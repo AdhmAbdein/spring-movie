@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-svc
+spec:
+  selector: 
+    movie: mysql
+  type: NodePort
+  ports:
+    - protocol: TCP
+      nodePort: 30013
+      port: 8080
+      targetPort: 8080
+
+  
