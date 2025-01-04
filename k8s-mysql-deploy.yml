@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-movie-deploy
+  labels:
+    movie: mysql
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      movie: mysql
+  template:
+    metadata:
+      name: pod-movie
+      labels:
+        movie: mysql
+    spec:
+      containers:
+        - name: cont-movie
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeRef:
+                  name: mysql-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_DATABASE
+              value: movie_ticket_booking
+          volumeMounts:
+            - name: movie-vol
+              mountPath: /data
+      volumes:
+        - name: movie-vol
+          persistentVolumeClaim:
+            claimName: mysql-movie-pvc        

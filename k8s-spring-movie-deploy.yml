@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-movie-deploy
+  labels:
+    movie: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      movie: mysql
+  template:
+    metadata:
+      name: pod-movie
+      labels:   
+        movie: mysql
+    spec: 
+      containers:
+        - name: cont-movie
+          image: adhmabdein/myspringmovieimg
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service-movie:3306/movie_ticket_booking?createTableIfNotExists=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  value: MYSQL_PASSWORD         
