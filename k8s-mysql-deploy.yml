@@ -24,7 +24,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: mysql-movie-secret 
                   key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
               value: movie_ticket_booking

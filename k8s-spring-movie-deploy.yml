@@ -28,5 +28,5 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: mysql-movie-secret 
                   key: MYSQL_PASSWORD         
