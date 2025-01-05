@@ -5,7 +5,7 @@ metadata:
   labels:
     movie: mysql
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       movie: mysql
