@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: spring-movie-deploy
   labels:
-    movie: mysql
+    movie: mov
 spec:
   replicas: 1
   selector:
     matchLabels:
-      movie: mysql
+      movie: mov
   template:
     metadata:
       name: pod-movie
       labels:   
-        movie: mysql
+        movie: mov
     spec: 
       containers:
         - name: cont-movie
