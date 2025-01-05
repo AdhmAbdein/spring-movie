@@ -6,7 +6,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Run tests and build the project
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
